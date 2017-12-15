@@ -152,7 +152,7 @@ public class Gui extends javax.swing.JFrame {
     private void eliminarNodo(int x,int y){
         if(grafo.buscarNodo(x, y)!=null){//si se hace clic sobre un nodo
             Nodo temp = grafo.buscarNodo(x, y);
-            grafo.eliminarAristasEntrante(temp);
+
             grafo.eliminarAristasSalientes(temp);
             if(grafo.eliminarNodo(temp)){
                 JOptionPane.showMessageDialog(null,"Eliminado");

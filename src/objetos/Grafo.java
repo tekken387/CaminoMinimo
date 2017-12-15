@@ -218,17 +218,19 @@ public class Grafo{
     }
     
     private void eliminarAristas(Nodo nodo){
-        ArrayList<Arista> aristas = aristasSaliente(nodo);        
-        for(Arista a:aristas){
-            a = null;
-        }
+        ArrayList<Arista> aristas = aristasSaliente(nodo);   
+            for(Arista a:aristas){
+                a = null;
+            }   
     }
+    
     public void eliminarAristasSalientes(Nodo nodo){
         ArrayList<Arista> aristas = aristasSaliente(nodo);        
         if(aristas !=null){
             eliminarAristas(nodo);
         }
     }
+    
     public void eliminarAristasEntrante(Nodo nodo){
         ArrayList<Arista> aristas = aristasEntrante(nodo);
         if(aristas !=null){
