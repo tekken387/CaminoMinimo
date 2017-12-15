@@ -153,6 +153,7 @@ public class Gui extends javax.swing.JFrame {
         if(grafo.buscarNodo(x, y)!=null){//si se hace clic sobre un nodo
             Nodo temp = grafo.buscarNodo(x, y);
             grafo.eliminarAristasEntrante(temp);
+            grafo.eliminarAristasSalientes(temp);
             if(grafo.eliminarNodo(temp)){
                 JOptionPane.showMessageDialog(null,"Eliminado");
                 dibujarGrafo();
@@ -190,8 +191,10 @@ public class Gui extends javax.swing.JFrame {
               
         }else{
             if(evt.isShiftDown()){
+                JOptionPane.showConfirmDialog(this, "shift down");
                eliminarNodo(x, y);
-            }
+               
+            }else{
                 if(grafo.buscarNodo(x, y)!=null){//si se hace clic sobre un nodo
                     if(nodoInicio == null){
                         nodoInicio = grafo.buscarNodo(x, y);//nodoInicio lo pongo a apuntar al nodo donde hice clic
@@ -209,6 +212,7 @@ public class Gui extends javax.swing.JFrame {
                 }else{//Si no he hecho clic sobre un nodo
                     crearNodo(x, y);//creo un nodo apartir de unas coordenadas
                 }
+            }
         }
         dibujarGrafo();
     }//GEN-LAST:event_jPanel1MouseClicked

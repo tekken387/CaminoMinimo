@@ -225,10 +225,15 @@ public class Grafo{
     }
     public void eliminarAristasSalientes(Nodo nodo){
         ArrayList<Arista> aristas = aristasSaliente(nodo);        
-        eliminarAristas(nodo);
+        if(aristas !=null){
+            eliminarAristas(nodo);
+        }
     }
     public void eliminarAristasEntrante(Nodo nodo){
-        ArrayList<Arista> aristas = aristasEntrante(nodo)        ;
-        eliminarAristas(nodo);
+        ArrayList<Arista> aristas = aristasEntrante(nodo);
+        if(aristas !=null){
+            eliminarAristas(nodo);
+        }
+            
     }
 }
