@@ -168,45 +168,47 @@ public class Gui extends javax.swing.JFrame {
 //            eliminarNodo(x, y);
 //            JOptionPane.showMessageDialog(this,"Clic derecho");
             if(grafo.buscarNodo(x, y)!=null){//si se hace clic sobre un nodo
-            if(nodoInicio == null){
-                grafo.reiniciarGrafoParaDisjktra();
-                grafo.reiniciarColores();
-                nodoInicio = grafo.buscarNodo(x, y);//nodoInicio lo pongo a apuntar al nodo donde hice clic
-                nodoInicio.getCirculo().setColor(Color.red);//Lo hago cambiar de color
-//                JOptionPane.showMessageDialog(null,"Seleccione otro nodo para crear una arista");
-            }else{//si nodoInicio ya estaba apunto a un nodo, lo preparo para crear arista             
-                nodoFin = grafo.buscarNodo(x, y);
-                Disjktra disjktra = new Disjktra(grafo);
-                disjktra.ejecutar(nodoInicio);
-                disjktra.marcarRutaCorta(nodoFin, Color.red);
-//                crearArista();            
-//                                
-//                nodoInicio.getCirculo().setColor(Color.yellow);//lo regreso a su color original
-//                
-                nodoInicio = null;//null para poder crear mas arista
-                nodoFin = null;//null para poder crear mas arista
+                if(nodoInicio == null){
+                    grafo.reiniciarGrafoParaDisjktra();
+                    grafo.reiniciarColores();
+                    nodoInicio = grafo.buscarNodo(x, y);//nodoInicio lo pongo a apuntar al nodo donde hice clic
+                    nodoInicio.getCirculo().setColor(Color.red);//Lo hago cambiar de color
+    //                JOptionPane.showMessageDialog(null,"Seleccione otro nodo para crear una arista");
+                }else{//si nodoInicio ya estaba apunto a un nodo, lo preparo para crear arista             
+                    nodoFin = grafo.buscarNodo(x, y);
+                    Disjktra disjktra = new Disjktra(grafo);
+                    disjktra.ejecutar(nodoInicio);
+                    disjktra.marcarRutaCorta(nodoFin, Color.red);
+    //                crearArista();            
+    //                                
+    //                nodoInicio.getCirculo().setColor(Color.yellow);//lo regreso a su color original
+    //                
+                    nodoInicio = null;//null para poder crear mas arista
+                    nodoFin = null;//null para poder crear mas arista
+                }
             }
-        }
-            
-            
+              
         }else{
-        if(grafo.buscarNodo(x, y)!=null){//si se hace clic sobre un nodo
-            if(nodoInicio == null){
-                nodoInicio = grafo.buscarNodo(x, y);//nodoInicio lo pongo a apuntar al nodo donde hice clic
-                nodoInicio.getCirculo().setColor(Color.red);//Lo hago cambiar de color
-//                JOptionPane.showMessageDialog(null,"Seleccione otro nodo para crear una arista");
-            }else{//si nodoInicio ya estaba apunto a un nodo, lo preparo para crear arista             
-                nodoFin = grafo.buscarNodo(x, y);                
-                crearArista();            
-                                
-                nodoInicio.getCirculo().setColor(Color.yellow);//lo regreso a su color original
-                
-                nodoInicio = null;//null para poder crear mas arista
-                nodoFin = null;//null para poder crear mas arista
+            if(evt.isShiftDown()){
+               eliminarNodo(x, y);
             }
-        }else{//Si no he hecho clic sobre un nodo
-            crearNodo(x, y);//creo un nodo apartir de unas coordenadas
-        }
+                if(grafo.buscarNodo(x, y)!=null){//si se hace clic sobre un nodo
+                    if(nodoInicio == null){
+                        nodoInicio = grafo.buscarNodo(x, y);//nodoInicio lo pongo a apuntar al nodo donde hice clic
+                        nodoInicio.getCirculo().setColor(Color.red);//Lo hago cambiar de color
+        //                JOptionPane.showMessageDialog(null,"Seleccione otro nodo para crear una arista");
+                    }else{//si nodoInicio ya estaba apunto a un nodo, lo preparo para crear arista             
+                        nodoFin = grafo.buscarNodo(x, y);                
+                        crearArista();            
+
+                        nodoInicio.getCirculo().setColor(Color.yellow);//lo regreso a su color original
+
+                        nodoInicio = null;//null para poder crear mas arista
+                        nodoFin = null;//null para poder crear mas arista
+                    }
+                }else{//Si no he hecho clic sobre un nodo
+                    crearNodo(x, y);//creo un nodo apartir de unas coordenadas
+                }
         }
         dibujarGrafo();
     }//GEN-LAST:event_jPanel1MouseClicked
