@@ -174,12 +174,14 @@ public class Gui extends javax.swing.JFrame {
                     grafo.reiniciarColores();
                     nodoInicio = grafo.buscarNodo(x, y);//nodoInicio lo pongo a apuntar al nodo donde hice clic
                     nodoInicio.getCirculo().setColor(Color.red);//Lo hago cambiar de color
-    //                JOptionPane.showMessageDialog(null,"Seleccione otro nodo para crear una arista");
+                    JOptionPane.showMessageDialog(null,"Seleccione nodo fin");
                 }else{//si nodoInicio ya estaba apunto a un nodo, lo preparo para crear arista             
                     nodoFin = grafo.buscarNodo(x, y);
                     Disjktra disjktra = new Disjktra(grafo);
                     disjktra.ejecutar(nodoInicio);
                     disjktra.marcarRutaCorta(nodoFin, Color.red);
+                    jLabel1.setText(disjktra.getRuta());
+                    
     //                crearArista();            
     //                                
     //                nodoInicio.getCirculo().setColor(Color.yellow);//lo regreso a su color original
@@ -191,7 +193,7 @@ public class Gui extends javax.swing.JFrame {
               
         }else{
             if(evt.isShiftDown()){
-                JOptionPane.showConfirmDialog(this, "shift down");
+                JOptionPane.showMessageDialog(this, "shift down");
                eliminarNodo(x, y);
                
             }else{

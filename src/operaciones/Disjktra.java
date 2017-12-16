@@ -20,9 +20,14 @@ public class Disjktra {
     Grafo grafo;
     ListaNodo listaNodosAdyacentes;
     ArrayList<Arista> aux = new ArrayList<Arista>();
+    String resultado;
+    int suma;
+    
     public Disjktra(Grafo grafo){
         this.grafo = grafo;
         listaNodosAdyacentes = new ListaNodo();
+        resultado="La ruta es: ";
+        suma=0;
     }
     private void llenarConAdyacentes(Nodo nodo){
         if(nodo != null){
@@ -64,17 +69,22 @@ public class Disjktra {
     }
     
     private void rutaCorta(Nodo nodoFinal){
-    aux.clear();
-    Nodo nAux = nodoFinal;
-    while(nAux.getNodoAntecesorDisjktra() != null){
-//        aux.add(grafo.getArista(nAux.getCapital().getNombreCiudad(),
-//                nAux.getNodoAntecesorDisjktra().getCapital().getNombreCiudad()));
-        aux.add(grafo.getArista(nAux,
-                nAux.getNodoAntecesorDisjktra()));
-        nAux = nAux.getNodoAntecesorDisjktra();
+        aux.clear();
+        Nodo nAux = nodoFinal;
+        int i=0;
+        while(nAux.getNodoAntecesorDisjktra() != null){
+    //        aux.add(grafo.getArista(nAux.getCapital().getNombreCiudad(),
+    //                nAux.getNodoAntecesorDisjktra().getCapital().getNombreCiudad()));
+            aux.add(grafo.getArista(nAux,
+                    nAux.getNodoAntecesorDisjktra()));
+            resultado=resultado+nAux.getDato()+"-";
+            suma=suma+aux.get(i).getPeso();
+            nAux = nAux.getNodoAntecesorDisjktra();
+            i++;
+        }
+        resultado=resultado+nAux.getDato()+". ";
+        resultado=resultado+ "Total: "+suma;
     }
-
-}
 public void marcarRutaCorta(Nodo nodoFinal,Color color){
     if(nodoFinal != null){
         rutaCorta(nodoFinal);
@@ -86,5 +96,10 @@ public void marcarRutaCorta(Nodo nodoFinal,Color color){
             }
     }
 }
+
+public String getRuta(){
+    return resultado;
+}
+
 
 }
