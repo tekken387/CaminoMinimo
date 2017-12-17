@@ -20,6 +20,7 @@ public class Gui extends javax.swing.JFrame {
     Grafo grafo = new Grafo();
     Nodo nodoInicio = null;
     Nodo nodoFin = null;
+    String res="";
     /**
      * Creamos el form
      */
@@ -48,17 +49,6 @@ public class Gui extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 532, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 417, Short.MAX_VALUE)
-        );
-
         jButton1.setText("Instrucciones");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,31 +65,44 @@ public class Gui extends javax.swing.JFrame {
 
         jLabel1.setText("Resultado:");
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(530, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(57, 57, 57))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addGap(23, 23, 23)
+                .addComponent(jLabel1)
+                .addContainerGap(317, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jLabel1)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addGap(61, 61, 61)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -120,6 +123,7 @@ public class Gui extends javax.swing.JFrame {
         jPanel1.paint(jPanel1.getGraphics());
         dibujarArista();
         dibujarNodos();
+        jLabel1.setText(res);
     }
     public void dibujarNodos(){
         ArrayList<Nodo> listaNodo = grafo.getListaNodos();
@@ -165,6 +169,7 @@ public class Gui extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         int x = evt.getX();
         int y = evt.getY();
+        
         if(evt.isMetaDown()){            
 //            eliminarNodo(x, y);
 //            JOptionPane.showMessageDialog(this,"Clic derecho");
@@ -179,8 +184,8 @@ public class Gui extends javax.swing.JFrame {
                     nodoFin = grafo.buscarNodo(x, y);
                     Disjktra disjktra = new Disjktra(grafo);
                     disjktra.ejecutar(nodoInicio);
-                    disjktra.marcarRutaCorta(nodoFin, Color.red);
-                    jLabel1.setText(disjktra.getRuta());
+                    res=disjktra.marcarRutaCorta(nodoFin, Color.red);
+                    
                     
     //                crearArista();            
     //                                
@@ -217,6 +222,7 @@ public class Gui extends javax.swing.JFrame {
             }
         }
         dibujarGrafo();
+        
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

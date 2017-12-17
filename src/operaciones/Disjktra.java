@@ -68,7 +68,7 @@ public class Disjktra {
         }
     }
     
-    private void rutaCorta(Nodo nodoFinal){
+    private String rutaCorta(Nodo nodoFinal){
         aux.clear();
         Nodo nAux = nodoFinal;
         int i=0;
@@ -84,22 +84,26 @@ public class Disjktra {
         }
         resultado=resultado+nAux.getDato()+". ";
         resultado=resultado+ "Total: "+suma;
+        return resultado;
     }
-public void marcarRutaCorta(Nodo nodoFinal,Color color){
-    if(nodoFinal != null){
-        rutaCorta(nodoFinal);
-            for(int i = 0;i < aux.size();i++){
-                if(!aux.isEmpty()){
-                    aux.get(i).getLineaQuebrada().setColor(color);
-                    aux.get(i).getLineaQuebrada().setGrosorLinea(4);
+    
+    public String marcarRutaCorta(Nodo nodoFinal,Color color){
+        String result="";
+        if(nodoFinal != null){
+             result=rutaCorta(nodoFinal);
+                for(int i = 0;i < aux.size();i++){
+                    if(!aux.isEmpty()){
+                        aux.get(i).getLineaQuebrada().setColor(color);
+                        aux.get(i).getLineaQuebrada().setGrosorLinea(4);
+                    }
                 }
-            }
+        }
+        
+        return result;
     }
-}
 
-public String getRuta(){
-    return resultado;
-}
-
-
+    public String getRuta(){
+        return resultado;
+    }
+    
 }
